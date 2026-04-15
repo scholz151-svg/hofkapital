@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HofKapital AG — Gemeinsam in Höfe investieren</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <noscript><style>
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .hero-tag, .hero h1, .hero-sub, .hero-buttons { opacity: 1 !important; transform: none !important; animation: none !important; }
+  </style></noscript>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --c-dark: #1a110b;
+      --c-brown: #2c1810;
+      --c-terra: #b85042;
+      --c-terra-light: #d4715f;
+      --c-sage: #6b8f71;
+      --c-sage-dark: #4a6b50;
+      --c-sand: #f5ecd7;
+      --c-cream: #fdf8f0;
+      --c-accent: #d4a574;
+      --c-text: #2c1810;
+      --c-text-light: #6b5b4f;
+      --c-white: #ffffff;
+      --f-display: 'Cormorant Garamond', Georgia, serif;
+      --f-body: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-body);
+      color: var(--c-text);
+      background: var(--c-cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ══════════ NAV ══════════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(26, 17, 11, 0.95);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      padding: 0.8rem 3rem;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+    .nav-logo {
+      font-family: var(--f-display); font-size: 1.6rem; font-weight: 700;
+      color: var(--c-white); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--c-accent); }
+    .nav-cta {
+      background: var(--c-terra) !important; color: var(--c-white) !important;
+      padding: 0.55rem 1.4rem !important; border-radius: 2px;
+    }
+    .nav-cta:hover { background: var(--c-terra-light) !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--c-white); margin: 5px 0; transition: all 0.3s; }
+
+    /* ══════════ HERO ══════════ */
+    .hero {
+      position: relative; height: 100vh; height: 100svh;
+      min-height: 700px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: -5%; /* extra bleed for zoom */
+      background-color: #3d2b1a; /* fallback */
+      background: linear-gradient(to bottom, rgba(26,17,11,0.25) 0%, rgba(26,17,11,0.1) 40%, rgba(26,17,11,0.75) 100%),
+        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80') center/cover no-repeat;
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+      -webkit-animation: heroZoom 25s ease-in-out infinite alternate;
+      animation: heroZoom 25s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    @-webkit-keyframes heroZoom { from { -webkit-transform: scale(1.05); transform: scale(1.05); } to { -webkit-transform: scale(1.15); transform: scale(1.15); } }
+    @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.15); } }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 2rem; }
+    .hero-tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--c-accent);
+      border: 1px solid rgba(212,165,116,0.35); padding: 0.5rem 1.8rem;
+      margin-bottom: 2rem; opacity: 1;
+    }
+    .js-reveal .hero-tag {
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 0.8s 0.3s ease forwards;
+    }
+    .hero h1 {
+      font-family: var(--f-display); font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600; line-height: 1.05; color: var(--c-white);
+      margin-bottom: 1.5rem; opacity: 1;
+    }
+    .js-reveal .hero h1 {
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1s 0.5s ease forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--c-accent); }
+    .hero-sub {
+      font-size: 1.15rem; color: rgba(255,255,255,0.8); line-height: 1.7;
+      max-width: 600px; margin: 0 auto 2.5rem; opacity: 1;
+    }
+    .js-reveal .hero-sub {
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1s 0.7s ease forwards;
+    }
+    .hero-buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      opacity: 1;
+    }
+    .js-reveal .hero-buttons {
+      opacity: 0; transform: translateY(30px); animation: fadeUp 1s 0.9s ease forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2.2rem; font-family: var(--f-body); font-size: 0.85rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer; transition: all 0.35s ease;
+    }
+    .btn-primary { background: var(--c-terra); color: var(--c-white); }
+    .btn-primary:hover { background: var(--c-terra-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,80,66,0.3); }
+    .btn-outline { background: transparent; color: var(--c-white); border: 1px solid rgba(255,255,255,0.35); }
+    .btn-outline:hover { border-color: var(--c-accent); color: var(--c-accent); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.5); font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; text-align: center;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: rgba(255,255,255,0.3); margin: 0.8rem auto 0;
+      animation: scrollLine 2s infinite;
+    }
+    @-webkit-keyframes fadeUp { to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); } }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @-webkit-keyframes tabFade { from { opacity: 0; -webkit-transform: translateY(10px); } to { opacity: 1; -webkit-transform: translateY(0); } }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.1% { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ══════════ SECTIONS ══════════ */
+    section { padding: 6rem 3rem; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--c-terra); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--f-display); font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600; line-height: 1.15; color: var(--c-dark); margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 1.05rem; color: var(--c-text-light); line-height: 1.7; max-width: 600px;
+    }
+
+    /* ══════════ KONZEPT ══════════ */
+    .konzept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .konzept-card {
+      background: var(--c-white); padding: 2.5rem 2rem; position: relative;
+      overflow: hidden; transition: all 0.4s ease;
+    }
+    .konzept-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--c-terra); transform: scaleX(0); transition: transform 0.4s ease;
+    }
+    .konzept-card:hover::before { transform: scaleX(1); }
+    .konzept-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(44,24,16,0.08); }
+    .konzept-num { font-family: var(--f-display); font-size: 3.5rem; font-weight: 700; color: var(--c-sand); line-height: 1; margin-bottom: 1rem; }
+    .konzept-card h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--c-dark); }
+    .konzept-card p { font-size: 0.95rem; color: var(--c-text-light); line-height: 1.7; }
+
+    /* ══════════ IMAGE BREAK ══════════ */
+    .image-break {
+      position: relative; height: 55vh; min-height: 380px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .image-break-bg {
+      position: absolute; inset: 0; background-size: cover;
+      background-position: center; background-attachment: fixed;
+      background-color: #4a3628; /* fallback */
+    }
+    .image-break-overlay { position: absolute; inset: 0; background: rgba(26,17,11,0.55); }
+    .image-break-content { position: relative; z-index: 2; text-align: center; max-width: 700px; padding: 0 2rem; }
+    .image-break-content blockquote {
+      font-family: var(--f-display); font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 400; font-style: italic; color: var(--c-white); line-height: 1.4;
+    }
+    .image-break-content cite {
+      display: block; margin-top: 1.5rem; font-family: var(--f-body);
+      font-style: normal; font-size: 0.85rem; letter-spacing: 0.1em;
+      color: var(--c-accent); text-transform: uppercase;
+    }
+
+    /* ══════════ TABS ══════════ */
+    .deep-dive { background: var(--c-white); overflow: hidden; -webkit-overflow-scrolling: touch; }
+    .tabs-nav {
+      display: flex; gap: 0; margin-top: 3rem; border-bottom: 2px solid rgba(0,0,0,0.06);
+    }
+    .tab-btn {
+      padding: 1rem 2rem; font-family: var(--f-body); font-size: 0.85rem;
+      font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--c-text-light); background: none; border: none;
+      cursor: pointer; position: relative; transition: color 0.3s;
+    }
+    .tab-btn::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 3px; background: var(--c-terra); transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .tab-btn.active { color: var(--c-terra); }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-btn:hover { color: var(--c-terra); }
+    .tab-panel { display: none; padding-top: 2.5rem; animation: tabFade 0.4s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes tabFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Tab: Punktesystem */
+    .punkte-hero-bar {
+      background: var(--c-dark); color: var(--c-white);
+      padding: 1.8rem 2.5rem; display: flex; align-items: center;
+      justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 2.5rem;
+    }
+    .punkte-hero-item { text-align: center; }
+    .punkte-hero-big { font-family: var(--f-display); font-size: 3rem; font-weight: 700; color: var(--c-accent); line-height: 1; }
+    .punkte-hero-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+    .punkte-hero-eq { font-family: var(--f-display); font-size: 2rem; color: var(--c-terra); }
+    .punkte-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .punkte-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .punkte-table thead th {
+      background: var(--c-terra); color: var(--c-white); padding: 0.8rem 1rem;
+      text-align: center; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em;
+    }
+    .punkte-table thead th:first-child { text-align: left; }
+    .punkte-table tbody td { padding: 0.75rem 1rem; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .punkte-table tbody td:first-child { text-align: left; font-weight: 600; color: var(--c-dark); }
+    .punkte-table tbody tr:nth-child(even) { background: var(--c-sand); }
+
+    /* Rechner */
+    .rechner {
+      background: var(--c-cream); padding: 2rem; border: 1px solid rgba(0,0,0,0.06);
+    }
+    .rechner h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; color: var(--c-dark); margin-bottom: 1.5rem; }
+    .rechner-slider-wrap { margin-bottom: 2rem; }
+    .rechner-slider-label { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+    .rechner-slider-label span { font-size: 0.85rem; color: var(--c-text-light); }
+    .rechner-slider-label strong {
+      font-family: var(--f-display); font-size: 1.4rem; font-weight: 700; color: var(--c-terra);
+    }
+    input[type="range"] {
+      width: 100%; height: 6px; -webkit-appearance: none; appearance: none;
+      background: var(--c-sand); border-radius: 3px; outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 22px; height: 22px;
+      border-radius: 50%; background: var(--c-terra); cursor: pointer;
+      border: 3px solid var(--c-white); box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--c-terra); cursor: pointer; border: 3px solid var(--c-white);
+    }
+    /* iOS Safari touch support */
+    @supports (-webkit-touch-callout: none) {
+      input[type="range"] { padding: 0; }
+      .image-break-bg { background-attachment: scroll !important; }
+    }
+    .rechner-results { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .rechner-result {
+      background: var(--c-white); padding: 1.2rem; text-align: center;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .rechner-result-big {
+      font-family: var(--f-display); font-size: 1.8rem; font-weight: 700;
+      color: var(--c-terra); line-height: 1;
+    }
+    .rechner-result-label { font-size: 0.75rem; color: var(--c-text-light); margin-top: 0.3rem; letter-spacing: 0.03em; }
+    .rechner-usage { margin-top: 1.5rem; }
+    .rechner-usage h4 { font-size: 0.85rem; font-weight: 600; color: var(--c-dark); margin-bottom: 0.8rem; }
+    .usage-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed rgba(0,0,0,0.08); font-size: 0.85rem; }
+    .usage-row:last-child { border: none; }
+    .usage-label { color: var(--c-text-light); }
+    .usage-val { font-weight: 600; color: var(--c-dark); }
+    .rechner-note { margin-top: 1.2rem; font-size: 0.78rem; color: var(--c-text-light); font-style: italic; }
+
+    /* Tab: Aktienstruktur */
+    .aktien-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .aktie-card { padding: 2.5rem; position: relative; overflow: hidden; }
+    .aktie-card.stamm {
+      background: linear-gradient(135deg, #3d2b22 0%, #2c1810 100%);
+      border: 1px solid rgba(184,80,66,0.3); color: var(--c-white);
+    }
+    .aktie-card.vorzug {
+      background: linear-gradient(135deg, #2a3d2d 0%, #1a2b1d 100%);
+      border: 1px solid rgba(107,143,113,0.3); color: var(--c-white);
+    }
+    .aktie-badge {
+      display: inline-block; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; padding: 0.4rem 1rem; margin-bottom: 1.5rem;
+    }
+    .stamm .aktie-badge { background: var(--c-terra); }
+    .vorzug .aktie-badge { background: var(--c-sage); }
+    .aktie-card h3 { font-family: var(--f-display); font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .aktie-feature { display: flex; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .aktie-feature:last-child { border: none; }
+    .aktie-check {
+      width: 22px; height: 22px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 0.7rem; margin-top: 2px; color: var(--c-white);
+    }
+    .stamm .aktie-check { background: var(--c-terra); }
+    .vorzug .aktie-check { background: var(--c-sage); }
+    .aktie-feature-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .aktie-feature-text strong { color: var(--c-white); }
+
+    /* Tab: Finanzen */
+    .fin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .fin-card {
+      background: var(--c-cream); padding: 2rem; border: 1px solid rgba(0,0,0,0.04);
+    }
+    .fin-card h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; color: var(--c-dark); margin-bottom: 1.5rem; }
+    .fin-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.65rem 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .fin-row:last-child { border: none; }
+    .fin-label { font-size: 0.9rem; color: var(--c-text-light); }
+    .fin-val { font-weight: 600; color: var(--c-dark); font-size: 0.9rem; }
+    .fin-total {
+      margin-top: 0.5rem; padding-top: 0.8rem; border-top: 2px solid var(--c-terra);
+      display: flex; justify-content: space-between;
+    }
+    .fin-total .fin-label { font-weight: 700; color: var(--c-dark); }
+    .fin-total .fin-val { color: var(--c-terra); font-family: var(--f-display); font-size: 1.3rem; font-weight: 700; }
+
+    .fin-bar-chart { margin-top: 1.5rem; }
+    .fin-bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+    .fin-bar-label { font-size: 0.8rem; color: var(--c-text-light); width: 120px; flex-shrink: 0; }
+    .fin-bar-track { flex: 1; height: 28px; background: var(--c-sand); position: relative; overflow: hidden; }
+    .fin-bar-fill { height: 100%; transition: width 1s ease; display: flex; align-items: center; padding-left: 0.6rem; }
+    .fin-bar-fill span { font-size: 0.75rem; font-weight: 600; color: var(--c-white); }
+
+    /* ══════════ HÖFE ══════════ */
+    .hoefe { background: var(--c-cream); }
+    .hoefe-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .hof-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; background: #5a4a3a; }
+    .hof-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .hof-card:hover img { transform: scale(1.08); }
+    .hof-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(26,17,11,0.85) 0%, transparent 60%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem; transition: background 0.4s;
+    }
+    .hof-card:hover .hof-card-overlay {
+      background: linear-gradient(to top, rgba(26,17,11,0.95) 0%, rgba(26,17,11,0.2) 70%);
+    }
+    .hof-card-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 0.5rem; }
+    .hof-card h3 { font-family: var(--f-display); font-size: 1.6rem; font-weight: 600; color: var(--c-white); margin-bottom: 0.3rem; }
+    .hof-card p { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+    .hof-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+
+    /* ══════════ ZAHLEN ══════════ */
+    .zahlen { background: var(--c-dark); color: var(--c-white); padding: 5rem 3rem; }
+    .zahlen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .zahl-item { text-align: center; }
+    .zahl-big { font-family: var(--f-display); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; color: var(--c-accent); line-height: 1; }
+    .zahl-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 0.5rem; line-height: 1.5; letter-spacing: 0.04em; }
+
+    /* ══════════ TIMELINE ══════════ */
+    .timeline { background: var(--c-cream); }
+    .timeline-track { margin-top: 3rem; position: relative; padding-left: 3rem; }
+    .timeline-track::before {
+      content: ''; position: absolute; left: 0.6rem; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--c-terra), var(--c-sage));
+    }
+    .timeline-item { position: relative; padding-bottom: 3rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -2.65rem; top: 0.2rem;
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 3px solid var(--c-terra); background: var(--c-cream);
+    }
+    .timeline-item:last-child .timeline-dot { border-color: var(--c-sage); }
+    .timeline-phase { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-terra); margin-bottom: 0.3rem; }
+    .timeline-item:last-child .timeline-phase { color: var(--c-sage); }
+    .timeline-item h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; color: var(--c-dark); margin-bottom: 0.8rem; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .timeline-tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; background: var(--c-white); border: 1px solid rgba(0,0,0,0.08); color: var(--c-text-light); }
+
+    /* ══════════ TEAM ══════════ */
+    .team { background: var(--c-white); }
+    .team-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+    .team-founder { display: flex; gap: 2rem; align-items: flex-start; }
+    .team-avatar {
+      width: 110px; height: 110px; border-radius: 50%; background: var(--c-sage);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .team-avatar span { font-family: var(--f-display); font-size: 2.8rem; font-weight: 700; color: var(--c-white); }
+    .team-info h3 { font-family: var(--f-display); font-size: 1.8rem; font-weight: 600; color: var(--c-dark); }
+    .team-role { font-size: 0.85rem; color: var(--c-terra); font-style: italic; margin-bottom: 1rem; }
+    .team-skills { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .team-skills li { font-size: 0.9rem; color: var(--c-text-light); padding-left: 1.2rem; position: relative; }
+    .team-skills li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 6px; height: 6px; border-radius: 50%; background: var(--c-terra); }
+    .team-seeking { background: var(--c-dark); padding: 2.5rem; color: var(--c-white); }
+    .team-seeking h3 { font-family: var(--f-display); font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .seeking-item { padding: 0.8rem 1.2rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); border-left: 3px solid var(--c-terra); font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+
+    /* ══════════ CTA ══════════ */
+    .cta { position: relative; padding: 6rem 3rem; overflow: hidden; }
+    .cta-bg {
+      position: absolute; inset: 0;
+      background-color: #1a110b; /* fallback */
+      background: linear-gradient(to right, rgba(26,17,11,0.92) 0%, rgba(26,17,11,0.75) 100%),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80') center/cover no-repeat;
+    }
+    .cta-content { position: relative; z-index: 2; text-align: center; max-width: 700px; margin: 0 auto; }
+    .cta-content h2 { font-family: var(--f-display); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 600; color: var(--c-white); margin-bottom: 1.5rem; }
+    .cta-stats { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .cta-stat { text-align: center; }
+    .cta-stat-big { font-family: var(--f-display); font-size: 2.5rem; font-weight: 700; color: var(--c-accent); line-height: 1; }
+    .cta-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.3rem; }
+
+    /* ══════════ FOOTER ══════════ */
+    .footer {
+      background: var(--c-dark); color: rgba(255,255,255,0.4); padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--f-display); font-size: 1.2rem; font-weight: 700; color: var(--c-white); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--c-accent); }
+
+    /* ══════════ REVEAL ══════════ */
+    /* Default: visible (for local file:// and JS-blocked scenarios) */
+    .reveal { opacity: 1; transform: none; transition: opacity 0.8s ease, transform 0.8s ease; }
+    /* JS adds this class to body when IntersectionObserver works */
+    .js-reveal .reveal { opacity: 0; transform: translateY(40px); }
+    .js-reveal .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════ RESPONSIVE ══════════ */
+    @media (max-width: 1024px) {
+      section { padding: 4rem 2rem; }
+      .konzept-grid { grid-template-columns: 1fr; }
+      .punkte-layout, .aktien-grid, .fin-grid, .team-layout { grid-template-columns: 1fr; }
+      .hoefe-grid { grid-template-columns: 1fr; }
+      .hof-card:first-child { grid-row: auto; }
+      .zahlen-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 0.8rem 1.2rem; }
+      .nav.scrolled { padding: 0.6rem 1.2rem; }
+      .nav-logo { font-size: 1.3rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 100%; left: 0; right: 0; background: rgba(26,17,11,0.97);
+        padding: 1.5rem; gap: 1.2rem;
+        -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+      }
+      .nav-links.open a { font-size: 0.95rem; padding: 0.5rem 0; }
+      .nav-cta { text-align: center !important; margin-top: 0.5rem; }
+
+      section { padding: 3.5rem 1.2rem; }
+
+      /* Hero mobile */
+      .hero { height: 100vh; height: 100svh; min-height: auto; }
+      .hero-bg { -webkit-animation: none; animation: none; -webkit-transform: none; transform: none; inset: 0; }
+      .hero-content { padding: 0 1.2rem; }
+      .hero h1 { font-size: clamp(2.4rem, 10vw, 3.2rem); margin-bottom: 1rem; }
+      .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+      .hero-buttons { flex-direction: column; align-items: center; gap: 0.8rem; }
+      .hero-buttons .btn { width: 100%; max-width: 280px; justify-content: center; }
+      .hero-tag { font-size: 0.65rem; padding: 0.4rem 1.2rem; letter-spacing: 0.2em; }
+      .hero-scroll { bottom: 1.5rem; }
+
+      /* Section headers */
+      .section-title { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+      .section-desc { font-size: 0.95rem; }
+
+      /* Konzept */
+      .konzept-grid { gap: 1rem; margin-top: 2rem; }
+      .konzept-card { padding: 1.8rem 1.5rem; }
+      .konzept-num { font-size: 2.5rem; }
+      .konzept-card h3 { font-size: 1.3rem; }
+
+      /* Image breaks */
+      .image-break { height: 45vh; min-height: 300px; }
+      .image-break-bg { background-attachment: scroll !important; }
+      .image-break-content blockquote { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+
+      /* Tabs — horizontal scroll with fade hints */
+      .tabs-nav {
+        overflow-x: auto; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; gap: 0;
+        margin-left: -1.2rem; margin-right: -1.2rem; padding: 0 1.2rem;
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 90%, transparent 100%);
+      }
+      .tabs-nav::-webkit-scrollbar { display: none; }
+      .tab-btn {
+        padding: 0.8rem 1.2rem; font-size: 0.72rem;
+        white-space: nowrap; flex-shrink: 0;
+      }
+
+      /* Punkte hero bar */
+      .punkte-hero-bar {
+        flex-direction: column; gap: 0.8rem; padding: 1.5rem;
+        margin-left: -1.2rem; margin-right: -1.2rem;
+        overflow: hidden;
+      }
+      .punkte-hero-eq { font-size: 1.5rem; }
+      .punkte-hero-big { font-size: 2.2rem; }
+
+      /* Punkte table */
+      .punkte-layout { gap: 2rem; overflow-x: hidden; max-width: 100%; }
+      .punkte-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -0.3rem; }
+      .punkte-table { font-size: 0.78rem; min-width: 320px; }
+      .punkte-table thead th { padding: 0.5rem 0.4rem; font-size: 0.65rem; }
+      .punkte-table tbody td { padding: 0.5rem 0.4rem; font-size: 0.78rem; }
+
+      /* Rechner */
+      .rechner { padding: 1.5rem; margin-left: -1.2rem; margin-right: -1.2rem; }
+      .rechner h3 { font-size: 1.3rem; }
+      .rechner-results { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .rechner-result { padding: 1rem 0.8rem; }
+      .rechner-result-big { font-size: 1.5rem; }
+      .usage-row { font-size: 0.8rem; }
+
+      /* Aktien cards */
+      .aktien-grid { gap: 1.2rem; }
+      .aktie-card { padding: 1.8rem 1.5rem; }
+      .aktie-card h3 { font-size: 1.5rem; }
+      .aktie-feature-text { font-size: 0.85rem; }
+
+      /* Finanzen */
+      .fin-grid { gap: 1.5rem; }
+      .fin-card { padding: 1.5rem; }
+      .fin-card h3 { font-size: 1.3rem; }
+      .fin-bar-row { flex-direction: column; gap: 0.3rem; }
+      .fin-bar-label { width: 100%; }
+
+      /* Höfe */
+      .hoefe-grid { gap: 1rem; margin-top: 2rem; }
+      .hof-card { aspect-ratio: 16/10; }
+      .hof-card:first-child { aspect-ratio: 16/10; }
+      .hof-card h3 { font-size: 1.3rem; }
+      .hof-card-overlay { padding: 1.2rem; }
+
+      /* Zahlen */
+      .zahlen { padding: 3.5rem 1.2rem; }
+      .zahlen-grid { gap: 1.5rem; }
+      .zahl-big { font-size: 2.2rem; }
+      .zahl-label { font-size: 0.75rem; }
+
+      /* Timeline */
+      .timeline-track { padding-left: 2rem; }
+      .timeline-dot { left: -1.65rem; }
+      .timeline-item h3 { font-size: 1.3rem; }
+      .timeline-tags { gap: 0.4rem; }
+      .timeline-tag { font-size: 0.72rem; padding: 0.25rem 0.6rem; }
+
+      /* Team */
+      .team-layout { gap: 2rem; }
+      .team-founder { flex-direction: column; align-items: center; text-align: center; }
+      .team-avatar { width: 90px; height: 90px; }
+      .team-avatar span { font-size: 2.2rem; }
+      .team-info h3 { font-size: 1.5rem; }
+      .team-skills li { text-align: left; font-size: 0.85rem; }
+      .team-seeking { padding: 1.8rem; }
+      .team-seeking h3 { font-size: 1.3rem; }
+      .seeking-item { font-size: 0.85rem; padding: 0.65rem 1rem; }
+
+      /* CTA */
+      .cta { padding: 4rem 1.2rem; }
+      .cta-content h2 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+      .cta-stats { gap: 1.5rem; }
+      .cta-stat-big { font-size: 2rem; }
+
+      /* Footer */
+      .footer {
+        flex-direction: column; text-align: center;
+        padding: 2rem 1.2rem; gap: 1.2rem;
+      }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    }
+
+    /* Extra small screens */
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero-sub { font-size: 0.9rem; }
+      .punkte-hero-big { font-size: 1.8rem; }
+      .rechner-results { grid-template-columns: 1fr; }
+      .zahlen-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .zahl-big { font-size: 1.8rem; }
+      .cta-stats { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">HofKapital</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#konzept">Konzept</a></li>
+      <li><a href="#details">Details</a></li>
+      <li><a href="#hoefe">Höfe</a></li>
+      <li><a href="#wachstum">Fahrplan</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#kontakt" class="nav-cta">Investor werden</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Immobilien-Investment neu gedacht</div>
+      <h1>Gemeinsam in Höfe<br><em>investieren</em></h1>
+      <p class="hero-sub">HofKapital macht Immobilien zugänglich — ab einer Aktie. Investieren, nutzen und von Wertsteigerung profitieren.</p>
+      <div class="hero-buttons">
+        <a href="#kontakt" class="btn btn-primary">Aktionär werden</a>
+        <a href="#konzept" class="btn btn-outline">Mehr erfahren</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Entdecken</div>
+  </section>
+
+  <!-- KONZEPT -->
+  <section class="konzept" id="konzept">
+    <div class="reveal">
+      <div class="section-label">Das Konzept</div>
+      <div class="section-title">Immobilien für alle —<br>ohne Millionenbudget</div>
+      <div class="section-desc">HofKapital erwirbt charaktervolle Höfe und macht sie als Gemeinschaftsimmobilien zugänglich. Aktionäre partizipieren an Wertsteigerung, Dividende und Nutzung.</div>
+    </div>
+    <div class="konzept-grid reveal">
+      <div class="konzept-card">
+        <div class="konzept-num">01</div>
+        <h3>Investieren</h3>
+        <p>Erwerben Sie Aktien an einer nicht börsennotierten AG und partizipieren Sie an der Wertsteigerung erstklassiger Hofimmobilien. Bereits ab 25.000 Euro.</p>
+      </div>
+      <div class="konzept-card">
+        <div class="konzept-num">02</div>
+        <h3>Nutzen</h3>
+        <p>Buchen Sie Aufenthalte über unser flexibles Punktesystem — für Familienurlaub, Retreats, Workshops oder einfach zum Abschalten.</p>
+      </div>
+      <div class="konzept-card">
+        <div class="konzept-num">03</div>
+        <h3>Profitieren</h3>
+        <p>Drei Renditeebenen: Dividende ab Jahr 3, Wertsteigerung der Immobilien und Nutzungsrechte als Sachrendite. Ihr Investment arbeitet dreifach.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE BREAK -->
+  <div class="image-break">
+    <div class="image-break-bg" style="background-image: url('https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1920&q=80')"></div>
+    <div class="image-break-overlay"></div>
+    <div class="image-break-content reveal">
+      <blockquote>Ein Hof ist mehr als eine Immobilie — es ist ein Ort, an dem Gemeinschaft entsteht.</blockquote>
+      <cite>Die Vision hinter HofKapital</cite>
+    </div>
+  </div>
+
+  <!-- DEEP DIVE TABS -->
+  <section class="deep-dive" id="details">
+    <div class="reveal">
+      <div class="section-label">Im Detail</div>
+      <div class="section-title">Wie funktioniert HofKapital?</div>
+      <div class="section-desc">Alles, was Sie über Punktesystem, Aktienstruktur und Finanzen wissen müssen.</div>
+    </div>
+    <div class="reveal">
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="punkte">Punktesystem</button>
+        <button class="tab-btn" data-tab="aktien">Aktienstruktur</button>
+        <button class="tab-btn" data-tab="finanzen">Finanzierung</button>
+        <button class="tab-btn" data-tab="einnahmen">Einnahmen</button>
+      </div>
+
+      <!-- TAB: Punktesystem -->
+      <div class="tab-panel active" id="tab-punkte">
+        <div class="punkte-hero-bar">
+          <div class="punkte-hero-item">
+            <div class="punkte-hero-big">1</div>
+            <div class="punkte-hero-label">Aktie</div>
+          </div>
+          <div class="punkte-hero-eq">=</div>
+          <div class="punkte-hero-item">
+            <div class="punkte-hero-big">25.000€</div>
+            <div class="punkte-hero-label">Investment</div>
+          </div>
+          <div class="punkte-hero-eq">=</div>
+          <div class="punkte-hero-item">
+            <div class="punkte-hero-big">300</div>
+            <div class="punkte-hero-label">Punkte / Jahr</div>
+          </div>
+        </div>
+        <div class="punkte-layout">
+          <div>
+            <div class="punkte-table-wrap">
+            <table class="punkte-table">
+              <thead>
+                <tr><th>Kategorie</th><th>Nebensaison</th><th>Zwischen</th><th>Hauptsaison</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Standard</td><td>5 Pkt</td><td>10 Pkt</td><td>15 Pkt</td></tr>
+                <tr><td>Komfort</td><td>8 Pkt</td><td>15 Pkt</td><td>23 Pkt</td></tr>
+                <tr><td>Suite / Apartment</td><td>10 Pkt</td><td>20 Pkt</td><td>30 Pkt</td></tr>
+                <tr><td>Ganzer Hoftrakt</td><td>15 Pkt</td><td>30 Pkt</td><td>45 Pkt</td></tr>
+              </tbody>
+            </table>
+            </div>
+            <p style="margin-top:1rem; font-size:0.8rem; color:var(--c-text-light); font-style:italic;">
+              Standortfaktoren: Köln 1,0 · Alpen 1,3 · Südeuropa 1,5. Punkte 2 Jahre gültig.
+            </p>
+          </div>
+          <div class="rechner">
+            <h3>Punkte-Rechner</h3>
+            <div class="rechner-slider-wrap">
+              <div class="rechner-slider-label">
+                <span>Anzahl Aktien</span>
+                <strong id="aktienCount">1</strong>
+              </div>
+              <input type="range" min="1" max="10" value="1" id="aktienSlider">
+            </div>
+            <div class="rechner-results">
+              <div class="rechner-result">
+                <div class="rechner-result-big" id="resInvest">25.000€</div>
+                <div class="rechner-result-label">Investment</div>
+              </div>
+              <div class="rechner-result">
+                <div class="rechner-result-big" id="resPunkte">300</div>
+                <div class="rechner-result-label">Punkte / Jahr</div>
+              </div>
+            </div>
+            <div class="rechner-usage">
+              <h4>Das entspricht ca.:</h4>
+              <div class="usage-row">
+                <span class="usage-label">Hauptsaison Standard</span>
+                <span class="usage-val" id="resHaupt">20 Nächte</span>
+              </div>
+              <div class="usage-row">
+                <span class="usage-label">Nebensaison Komfort</span>
+                <span class="usage-val" id="resNeben">37 Nächte</span>
+              </div>
+              <div class="usage-row">
+                <span class="usage-label">Mix (2W Haupt + Rest Neben)</span>
+                <span class="usage-val" id="resMix">+ 18 Nächte</span>
+              </div>
+            </div>
+            <p class="rechner-note">Rechenbeispiele basieren auf Standortfaktor 1,0 (Köln).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Aktienstruktur -->
+      <div class="tab-panel" id="tab-aktien">
+        <div class="aktien-grid">
+          <div class="aktie-card stamm">
+            <div class="aktie-badge">Phase 1 — Gründer</div>
+            <h3>Stammaktien</h3>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Volles Stimmrecht</strong> — 1 Aktie = 1 Stimme auf der Hauptversammlung</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Dividendenberechtigt</strong> — Teilhabe am Gewinn ab Jahr 3</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>300 Punkte/Jahr</strong> — pro Aktie für Hofnutzung</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Mitgestaltung</strong> — Strategie, Standorte und Ausbau mitentscheiden</div></div>
+          </div>
+          <div class="aktie-card vorzug">
+            <div class="aktie-badge">Phase 2 — Investoren</div>
+            <h3>Vorzugsaktien</h3>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Dividendenvorzug</strong> — garantierte 3–4% p.a. vor Stammaktien</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>300 Punkte/Jahr</strong> — identische Nutzungsrechte wie Gründer</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Wertsteigerung</strong> — Partizipation am wachsenden Portfolio</div></div>
+            <div class="aktie-feature"><div class="aktie-check">&#10003;</div><div class="aktie-feature-text"><strong>Übertragbar</strong> — mit Vorstandszustimmung weitergeben</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Finanzierung -->
+      <div class="tab-panel" id="tab-finanzen">
+        <div class="fin-grid">
+          <div class="fin-card">
+            <h3>Kapitalherkunft</h3>
+            <div class="fin-row"><span class="fin-label">Gründer (10 Stammaktien)</span><span class="fin-val">250.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Mitgründer (bis 9 Aktien)</span><span class="fin-val">25.000–225.000€</span></div>
+            <div class="fin-row"><span class="fin-label">KfW / NRW-Förderung</span><span class="fin-val">nach Verfügbarkeit</span></div>
+            <div class="fin-row"><span class="fin-label">Bankkredit (Rest)</span><span class="fin-val">nach Bedarf</span></div>
+            <div class="fin-total"><span class="fin-label">Max. Budget Hof 1</span><span class="fin-val">500.000€</span></div>
+          </div>
+          <div class="fin-card">
+            <h3>Mittelverwendung</h3>
+            <div class="fin-row"><span class="fin-label">Kaufpreis Hof</span><span class="fin-val">300.000–350.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Renovierung</span><span class="fin-val">100.000–150.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Gründungskosten</span><span class="fin-val">10.000–15.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Reserve</span><span class="fin-val">35.000–50.000€</span></div>
+            <div class="fin-total"><span class="fin-label">Gesamt</span><span class="fin-val">max. 500.000€</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Einnahmen -->
+      <div class="tab-panel" id="tab-einnahmen">
+        <div class="fin-card" style="max-width:100%; margin-bottom: 2rem;">
+          <h3>Drei Einnahmeströme — Ziel Jahr 2</h3>
+          <div class="fin-bar-chart">
+            <div class="fin-bar-row">
+              <span class="fin-bar-label">Ext. Vermietung & Events</span>
+              <div class="fin-bar-track">
+                <div class="fin-bar-fill" style="width:75%; background:var(--c-terra);"><span>45.000–60.000€</span></div>
+              </div>
+            </div>
+            <div class="fin-bar-row">
+              <span class="fin-bar-label">Zusatzservices</span>
+              <div class="fin-bar-track">
+                <div class="fin-bar-fill" style="width:15%; background:var(--c-sage);"><span>5–10k€</span></div>
+              </div>
+            </div>
+            <div class="fin-bar-row">
+              <span class="fin-bar-label">Mitgliedsbeiträge</span>
+              <div class="fin-bar-track">
+                <div class="fin-bar-fill" style="width:6%; background:var(--c-accent);"><span>2–4k€</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fin-grid">
+          <div class="fin-card">
+            <h3>Betriebskosten / Jahr</h3>
+            <div class="fin-row"><span class="fin-label">Instandhaltung</span><span class="fin-val">10.000–15.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Versicherungen</span><span class="fin-val">3.000–5.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Nebenkosten</span><span class="fin-val">8.000–12.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Marketing</span><span class="fin-val">5.000–8.000€</span></div>
+            <div class="fin-row"><span class="fin-label">Steuerberater / WP</span><span class="fin-val">5.000–10.000€</span></div>
+            <div class="fin-total"><span class="fin-label">Gesamt (ohne Gehalt)</span><span class="fin-val">~35–50k€</span></div>
+          </div>
+          <div class="fin-card">
+            <h3>Rendite-Ziel</h3>
+            <div class="fin-row"><span class="fin-label">Dividende ab Jahr 3</span><span class="fin-val">3–4% p.a.</span></div>
+            <div class="fin-row"><span class="fin-label">Break-Even</span><span class="fin-val">Jahr 2–3</span></div>
+            <div class="fin-row"><span class="fin-label">Nutzung (Sachrendite)</span><span class="fin-val">300 Pkt/Aktie</span></div>
+            <div class="fin-row"><span class="fin-label">Wertsteigerung Immobilie</span><span class="fin-val">langfristig</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HÖFE -->
+  <section class="hoefe" id="hoefe">
+    <div class="reveal">
+      <div class="section-label">Die Höfe</div>
+      <div class="section-title">Orte mit Charakter</div>
+      <div class="section-desc">Wir erwerben teilsanierte Höfe an ausgewählten Standorten und verwandeln sie in Gemeinschaftsorte mit Seele.</div>
+    </div>
+    <div class="hoefe-grid reveal">
+      <div class="hof-card">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Hof" loading="lazy">
+        <div class="hof-card-overlay">
+          <div class="hof-card-tag">Phase 1 — Startprojekt</div>
+          <h3>Speckgürtel Köln</h3>
+          <p>Erster Hof — Ferienwohnungen, Eventscheune, Gemeinschaftsgarten</p>
+        </div>
+      </div>
+      <div class="hof-card">
+        <img src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?w=800&q=80" alt="Berghof" loading="lazy">
+        <div class="hof-card-overlay">
+          <div class="hof-card-tag">Phase 2</div>
+          <h3>Deutsche Alpen</h3>
+          <p>Berghof für Wanderer, Retreats und Winterurlaub</p>
+        </div>
+      </div>
+      <div class="hof-card">
+        <img src="https://images.unsplash.com/photo-1523528283115-9bf9b1699245?w=800&q=80" alt="Finca" loading="lazy">
+        <div class="hof-card-overlay">
+          <div class="hof-card-tag">Vision</div>
+          <h3>Südeuropa</h3>
+          <p>Finca in Portugal oder Kroatien — Ganzjahres-Sonne</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ZAHLEN -->
+  <section class="zahlen">
+    <div class="zahlen-grid reveal">
+      <div class="zahl-item"><div class="zahl-big">500k€</div><div class="zahl-label">Budget Hof 1</div></div>
+      <div class="zahl-item"><div class="zahl-big">25k€</div><div class="zahl-label">Pro Aktie</div></div>
+      <div class="zahl-item"><div class="zahl-big">3–4%</div><div class="zahl-label">Ziel-Dividende</div></div>
+      <div class="zahl-item"><div class="zahl-big">300</div><div class="zahl-label">Punkte / Jahr</div></div>
+    </div>
+  </section>
+
+  <!-- IMAGE BREAK 2 -->
+  <div class="image-break">
+    <div class="image-break-bg" style="background-image: url('https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=1920&q=80')"></div>
+    <div class="image-break-overlay"></div>
+    <div class="image-break-content reveal">
+      <blockquote>Dein Investment. Dein Rückzugsort. Deine Gemeinschaft.</blockquote>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <section class="timeline" id="wachstum">
+    <div class="reveal">
+      <div class="section-label">Fahrplan</div>
+      <div class="section-title">Von Köln nach Europa</div>
+      <div class="section-desc">Erst beweisen, dann skalieren. Unser Wachstum ist organisch und an klare Meilensteine gebunden.</div>
+    </div>
+    <div class="timeline-track reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase A — Monat 0–12</div>
+        <h3>Gründung & Aufbau</h3>
+        <div class="timeline-tags">
+          <span class="timeline-tag">AG gründen</span><span class="timeline-tag">Gründerteam formen</span>
+          <span class="timeline-tag">Hof suchen & kaufen</span><span class="timeline-tag">Renovierung starten</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase A — Monat 12–24</div>
+        <h3>Betrieb & Proof of Concept</h3>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Erste Vermietungen</span><span class="timeline-tag">Events & Workshops</span>
+          <span class="timeline-tag">Buchungsplattform</span><span class="timeline-tag">Break-Even</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-phase">Phase B — ab Monat 24</div>
+        <h3>Expansion nach Europa</h3>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Vorzugsaktien ausgeben</span><span class="timeline-tag">Hof 2: Alpen oder Küste</span>
+          <span class="timeline-tag">Hof 3: Benelux</span><span class="timeline-tag">Hof 4+: Südeuropa</span>
+          <span class="timeline-tag">Eigene Buchungsmarke</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="reveal">
+      <div class="section-label">Team</div>
+      <div class="section-title">Die Menschen dahinter</div>
+    </div>
+    <div class="team-layout reveal">
+      <div class="team-founder">
+        <div class="team-avatar"><span>S</span></div>
+        <div class="team-info">
+          <h3>Sönke</h3>
+          <div class="team-role">Gründer & Vorstand</div>
+          <ul class="team-skills">
+            <li>Kaufmännische Ausbildung — Betriebswirtschaft & Verhandlung</li>
+            <li>Handwerkliche Expertise — Renovierung & Wertschöpfung</li>
+            <li>Unternehmerische Vision — Strategie & Skalierung</li>
+          </ul>
+        </div>
+      </div>
+      <div class="team-seeking">
+        <h3>Wir suchen Mitgründer</h3>
+        <div class="seeking-item">Immobilien-Expertise & Marktkenntnis</div>
+        <div class="seeking-item">Finanz- & Steuerberatung</div>
+        <div class="seeking-item">Marketing & Community-Aufbau</div>
+        <div class="seeking-item">Unternehmergeist & Hands-on-Mentalität</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="kontakt">
+    <div class="cta-bg"></div>
+    <div class="cta-content reveal">
+      <h2>Werde Teil von HofKapital</h2>
+      <div class="cta-stats">
+        <div class="cta-stat"><div class="cta-stat-big">25.000€</div><div class="cta-stat-label">Pro Aktie</div></div>
+        <div class="cta-stat"><div class="cta-stat-big">3–4%</div><div class="cta-stat-label">Ziel-Dividende</div></div>
+        <div class="cta-stat"><div class="cta-stat-big">300</div><div class="cta-stat-label">Punkte / Jahr</div></div>
+      </div>
+      <a href="mailto:kontakt@hofkapital.de" class="btn btn-primary">Jetzt Kontakt aufnehmen</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">HofKapital AG</div>
+    <ul class="footer-links">
+      <li><a href="#konzept">Konzept</a></li><li><a href="#details">Details</a></li>
+      <li><a href="#kontakt">Kontakt</a></li><li><a href="#">Impressum</a></li><li><a href="#">Datenschutz</a></li>
+    </ul>
+    <div>&copy; 2026 HofKapital AG</div>
+  </footer>
+
+  <script>
+    // Nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Rechner
+    const slider = document.getElementById('aktienSlider');
+    slider.addEventListener('input', () => {
+      const n = parseInt(slider.value);
+      const punkte = n * 300;
+      document.getElementById('aktienCount').textContent = n;
+      document.getElementById('resInvest').textContent = (n * 25000).toLocaleString('de-DE') + '€';
+      document.getElementById('resPunkte').textContent = punkte;
+      document.getElementById('resHaupt').textContent = Math.floor(punkte / 15) + ' Nächte';
+      document.getElementById('resNeben').textContent = Math.floor(punkte / 8) + ' Nächte';
+      const hauptUsed = 14 * 15; // 2 Wochen Hauptsaison Standard
+      const remaining = punkte - hauptUsed;
+      document.getElementById('resMix').textContent = remaining > 0
+        ? '+ ' + Math.floor(remaining / 5) + ' Nächte'
+        : 'nicht genug Punkte';
+    });
+
+    // Scroll reveal — only activate if IntersectionObserver is available
+    // Without JS or on file:// protocol, everything stays visible (no opacity:0)
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+  </script>
+</body>
+</html>
